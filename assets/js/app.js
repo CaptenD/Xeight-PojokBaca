@@ -5,7 +5,7 @@ const CFG={
      B) Langsung : FOLDER_ID + API_KEY (Google Drive API)   -> tanpa backend */
   API:"",
   FOLDER_ID:"1XV2Nakw89dPgwo9cdhIx1mz87JH-7AJ6",
-  API_KEY:"AIzaSyA3HrE6AvTbOPedwioRUxz8YCkXASg-_Xo",
+  API_KEY:"AIzaSyBGiSuIe18RzrPamRTKnxgKgiIlva8_mMo",
   REFRESH_MIN:5,                      // cek perubahan folder otomatis setiap N menit
   NAME:"Pojok Baca",KELAS:"Kelas X-8, SMA 1 PRAMBON"
 };
