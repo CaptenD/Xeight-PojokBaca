@@ -3,7 +3,7 @@ const CFG={
   /* Pilih SALAH SATU cara menghubungkan Drive (lihat README):
      A) API      : URL Web App Apps Script (Code.gs)        -> paling aman, kunci tidak terlihat
      B) Langsung : FOLDER_ID + API_KEY (Google Drive API)   -> tanpa backend */
-  API:"https://script.google.com/macros/s/AKfycbyLPolBiVu8-73eAWLvEoYfslgaaj4Ps9He5nDkV9xg2W9As00_IsA1AWtIU06mXMSM/exec",
+  API:"",
   FOLDER_ID:"1XV2Nakw89dPgwo9cdhIx1mz87JH-7AJ6",
   API_KEY:"AIzaSyA3HrE6AvTbOPedwioRUxz8YCkXASg-_Xo",
   REFRESH_MIN:5,                      // cek perubahan folder otomatis setiap N menit
