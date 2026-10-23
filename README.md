@@ -12,8 +12,8 @@ memakai SOLID STATE dari HTML5 UP (CC BY 3.0).
 - `Code.gs`: backend Apps Script
 
 ## Mengubah tampilan
-Warna dan sudut diatur template. Ubah warna aksen di `assets/css/app.css  dan gambar latar di `images/bg.jpg`.
-Teks halaman ada di `index.html`. Ganti `images/pic01.jpg` sampai `pic08.jpg` dengan fotomu sendiri.
+Warna dan elemen dalam css. Ubah warna aksen di `assets/css/app.css  dan gambar latar di `images/bg.png`.
+Teks halaman ada di `index.html`. Ganti `images/pic01.png` sampai `pic08.png`.
 
 ## Menghubungkan Google Drive
 isi baris CFG '' pada app.js
