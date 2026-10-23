@@ -1,12 +1,9 @@
-/* ===== KONFIGURASI ===== */
+/* KONFIGURASI */
 const CFG={
-  /* Pilih SALAH SATU cara menghubungkan Drive (lihat README):
-     A) API      : URL Web App Apps Script (Code.gs)        -> paling aman, kunci tidak terlihat
-     B) Langsung : FOLDER_ID + API_KEY (Google Drive API)   -> tanpa backend */
   API:"",
   FOLDER_ID:"1XV2Nakw89dPgwo9cdhIx1mz87JH-7AJ6",
   API_KEY:"AIzaSyBGiSuIe18RzrPamRTKnxgKgiIlva8_mMo",
-  REFRESH_MIN:5,                      // cek perubahan folder otomatis setiap N menit
+  REFRESH_MIN:5,                      // auto-refresh : 5 Menit
   NAME:"Pojok Baca",KELAS:"Kelas X-8, SMA 1 PRAMBON"
 };
 const DEMO=[
@@ -65,7 +62,7 @@ async function thumbFail(img){
   img.remove();
 }
 
-/* ---- segmented pill ---- */
+/* segmented */
 function seg(el,opts,cur,fn){
   el.innerHTML='<span class="pl"></span>'+opts.map(o=>`<button>${esc(o)}</button>`).join("");
   const mv=()=>{const on=[...el.querySelectorAll("button")].find(b=>b.textContent===cur);if(!on)return;
@@ -74,7 +71,7 @@ function seg(el,opts,cur,fn){
   requestAnimationFrame(mv);el._mv=mv;el._set=v=>{cur=v;mv()};
 }
 
-/* ---- render ---- */
+/* render */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
 $$(".rv").forEach(e=>io.observe(e));
 function skeleton(){$("#grid").innerHTML=Array(8).fill('<div class="sk"></div>').join("")}
@@ -126,7 +123,7 @@ $("#fmt").onchange=e=>{fmt=e.target.value;render(1)};
 $("#vw").onclick=e=>{const b=e.target.closest("button");if(!b)return;view=b.dataset.v;$$("#vw button").forEach(x=>x.classList.toggle("on",x===b));render(1)};
 $("#sync").onclick=()=>{custom=false;if(SOURCE())sync(true,true);else{ITEMS=DEMO;build();status()}};
 
-/* ---- pencarian pintar ---- */
+/* Search */
 $("#q").oninput=e=>{const v=e.target.value.trim(),f=parseFolder(v),d=parseDrive(v);
   $("#go").classList.toggle("show",!!(f||d));$("#go").textContent=f?"Muat folder":"Baca dari Drive";term=(f||d)?"":v.toLowerCase();if(term&&tab!=="kelas")setTab("kelas");else render()};
 $("#q").onkeydown=e=>{if(e.key==="Enter")direct()};$("#go").onclick=direct;
@@ -135,7 +132,7 @@ function direct(){const v=$("#q").value.trim(),f=parseFolder(v),it=parseDrive(v)
 addEventListener("keydown",e=>{if(e.key==="/"&&!/INPUT|SELECT/.test(document.activeElement.tagName)&&$("#reader").hidden){e.preventDefault();$("#q").focus()}
   if(!$("#reader").hidden){if(e.key==="Escape")closeReader();if(e.key==="i")$("#ri").click();if(e.key==="ArrowLeft")step(-1);if(e.key==="ArrowRight")step(1)}});
 
-/* ---- pembaca ---- */
+/* Reader */
 let cur=null,from=null,pushed=false;
 function infoPanel(){
   const it=cur,rows=[["Sumber",it.src],["Format",TYPE[it.type]],["Ukuran",fmtSize(it.size)],["Diperbarui",it.date?fmtDate(it.date):""]].filter(r=>r[1]);
@@ -184,7 +181,7 @@ $("#rcl").onclick=closeReader;$("#rp").onclick=()=>step(-1);$("#rn").onclick=()=
 $("#ri").onclick=()=>$("#rm").classList.toggle("noinfo");
 $("#rf").onclick=()=>{const s=$("#stage");document.fullscreenElement?document.exitFullscreen():s.requestFullscreen?.().catch(()=>toast("Layar penuh tidak didukung di sini."))};
 
-/* ---- Perpustakaan Terbuka: Project Gutenberg, Internet Archive, Open Library (gratis dan legal) ---- */
+/* Open Source Scraper: Project Gutenberg, Internet Archive, Open Library */
 const getJ=async u=>{const r=await fetch(u);if(!r.ok)throw new Error("HTTP "+r.status);return r.json()};
 const strip=v=>String(Array.isArray(v)?v[0]:v||"").replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim().slice(0,300);
 async function srcGB(q,page,lang){
@@ -229,7 +226,7 @@ $("#olang").onchange=e=>{ox.lang=e.target.value;search(true)};
 $("#of").onsubmit=e=>{e.preventDefault();ox.q=$("#oq").value.trim();search(true)};
 $("#mb").onclick=()=>search(false);
 
-/* ---- katalog: Apps Script ATAU Google Drive API langsung ---- */
+/* katalog */
 const GAPI="https://www.googleapis.com/drive/v3/files";
 const MT={"application/pdf":"pdf","application/vnd.openxmlformats-officedocument.wordprocessingml.document":"docx","application/msword":"docx","application/vnd.google-apps.document":"doc",
  "application/vnd.openxmlformats-officedocument.presentationml.presentation":"pptx","application/vnd.ms-powerpoint":"pptx","application/vnd.google-apps.presentation":"slide",
@@ -285,7 +282,7 @@ async function boot(){
 }
 boot();addEventListener("resize",()=>{$("#kind")._mv?.();$("#cats")._mv?.()});
 
-/* ---- menu, spotlight, dan form tautan ---- */
+/* menu, spotlight, dan form tautan */
 $("#mOpen").onclick=()=>setTab("terbuka");
 $("#aOpen").onclick=()=>setTab("terbuka");
 $("#mSaved").onclick=()=>{if(!onlySaved)$("#sv").click()};
