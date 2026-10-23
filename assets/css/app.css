@@ -1,27 +1,23 @@
-/* Pojok Baca: komponen aplikasi di atas template Solid State (HTML5 UP, CC BY 3.0) */
+/* Basee on Solid State (HTML5 UP, CC BY 3.0) */
 :root{--bg:#2e3141;--card:rgba(0,0,0,.2);--card2:rgba(0,0,0,.3);--accent:#4c5c96;--line:rgba(255,255,255,.125);--line2:rgba(255,255,255,.25);--tint:rgba(255,255,255,.075);--mute:rgba(255,255,255,.55);--mint:#7fd8c8;--head:Raleway,Helvetica,sans-serif}
 [hidden]{display:none!important}
-/* Ganti kode lama dengan ini */
 .wide {
     width: 100% !important;
     max-width: 100% !important;
 }
 svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
-/* reset tombol template untuk komponen kita */
 .seg button,.ib,.bm,.pillb,.rc,#go,#mb,.vw button{height:auto;line-height:1.4;padding:0;letter-spacing:normal;text-transform:none;font:inherit;box-shadow:none;border-radius:0;white-space:normal;background:none;color:#fff!important}
 
-/* animasi pembuka banner ala template: masuk berurutan dengan blur */
 #banner .smart,#banner .actions{transition:opacity .5s ease,transform .5s ease,filter .25s ease;opacity:1;transform:translateX(0);filter:blur(0)}
 #banner .smart{transition-delay:.95s}#banner .actions{transition-delay:1.1s}
 body.is-preload #banner .smart,body.is-preload #banner .actions{opacity:0;transform:translateX(.5em);filter:blur(2px)}
 #banner .actions{margin-top:2em}
 
-/* kolom cari di banner */
 .smart {
     display: flex;
     align-items: center;
-    width: 100%; /* Tambahkan baris ini */
+    width: 100%;
     max-width: 38em;
     margin: 2em 0 0;
     border-radius: 5px;
@@ -34,11 +30,9 @@ body.is-preload #banner .smart,body.is-preload #banner .actions{opacity:0;transf
 #go.show{display:block}
 @keyframes pop{from{opacity:0;transform:scale(.9)}}
 
-/* reveal saat scroll */
 .rv{opacity:0;transform:translateY(1.5em);filter:blur(2px);transition:opacity .5s ease,transform .5s ease,filter .25s ease}
 .rv.in{opacity:1;transform:none;filter:none}
 
-/* bar status & kontrol */
 .stat{display:flex;align-items:center;gap:.9em;flex-wrap:wrap;margin:0 0 1.5em}
 .cnt{color:var(--mute);font-size:.9em}
 .ib{display:inline-grid;place-items:center;width:2.6em;height:2.6em;border-radius:5px;box-shadow:inset 0 0 0 2px var(--line);cursor:pointer;border:0;transition:background-color .2s ease-in-out}
@@ -59,7 +53,6 @@ a.pillb{text-decoration:none;border-bottom:0}
 .osearch:focus-within{box-shadow:inset 0 0 0 2px var(--line2);background:var(--tint)}
 .osearch .pillb{margin:.3em}
 
-/* kartu buku ala .features */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(13.5em,1fr));gap:1.75em}
 .card{position:relative;background:var(--card);border-radius:5px;padding:1.1em;cursor:pointer;opacity:0;transform:translateY(1.5em);filter:blur(2px);
   transition:opacity .5s ease,transform .5s ease,filter .25s ease,background-color .2s ease-in-out,box-shadow .2s ease-in-out}
@@ -96,7 +89,6 @@ a.pillb{text-decoration:none;border-bottom:0}
 .rc .cover{width:3.6em;flex:none}.rc .cover b{font-size:1.2em}.rc .ft{display:none}
 .rc strong{display:block;font-weight:600;line-height:1.3}.rc small{color:var(--mute);font-size:.85em}
 
-/* pembaca */
 #reader{position:fixed;inset:0;z-index:20000;background:#262938;display:grid;grid-template-rows:auto 1fr}
 .rbar{display:flex;align-items:center;gap:.7em;padding:.7em 1em;background:var(--bg);border-bottom:2px solid var(--line)}
 .rtt{flex:1;min-width:0;margin-left:.4em}.rtt b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rtt small{color:var(--mute)}
@@ -118,13 +110,11 @@ iframe{width:100%;height:100%;border:0;display:block}
 #toast{position:fixed;left:50%;bottom:1.5em;z-index:30000;transform:translate(-50%,1.5em);opacity:0;padding:.9em 1.5em;border-radius:5px;background:var(--accent);transition:opacity .35s ease,transform .35s ease;pointer-events:none;max-width:90vw;font-size:.9em}
 #toast.on{transform:translate(-50%,0);opacity:1}
 
-/* footer: form tautan */
 #footer .field input{width:100%}
 
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
 ::view-transition-group(*){animation-duration:.35s;animation-timing-function:ease}
 
-/* 1. ATURAN GLOBAL (Diletakkan sebelum Media Queries) */
 html, body, #page-wrapper, #wrapper {
     overflow-x: hidden !important;
     max-width: 100% !important;
@@ -135,7 +125,6 @@ img {
   height: auto;
 }
 
-/* 2. MEDIA QUERIES (Diurutkan dari max-width terbesar ke terkecil) */
 
 @media (max-width:980px){
   .wide{width:100%!important}
@@ -145,14 +134,12 @@ img {
 }
 
 @media (max-width: 768px) {
-  /* Membuat koleksi buku menumpuk ke bawah (1 kolom) di HP */
   .grid {
     display: grid;
     grid-template-columns: 1fr !important; 
     width: 100%;
   }
 
-  /* Membuat gambar dan teks pada bagian Spotlight/Tentang atas-bawah */
   .spotlight .inner {
     display: flex;
     flex-direction: column; 
@@ -164,7 +151,6 @@ img {
     margin-bottom: 20px;
   }
 
-  /* Membuat daftar kotak fitur "Dibuat untuk membaca" menumpuk ke bawah */
   .features {
     display: flex;
     flex-direction: column;
