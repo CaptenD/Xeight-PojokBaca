@@ -7,7 +7,7 @@ on:
       - master
     paths:
       - 'assets/sass/**'
-  workflow_dispatch: # Memungkinkan Anda menjalankan ulang secara manual dari tombol di web GitHub
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -23,19 +23,13 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '24'
+        node-version: '20'
 
     - name: Install Sass globally
       run: npm install -g sass
 
-    - name: Verify SASS Folder Structure
-      run: |
-        echo "=== Memeriksa posisi file SASS ==="
-        ls -la assets/sass/ || echo "Folder assets/sass TIDAK DITEMUKAN!"
-
     - name: Process SASS Compilation
       run: |
-        # Menggunakan bendera --load-path agar pustaka Sass dapat melacak berkas @import secara fleksibel
         sass assets/sass/main.scss assets/css/main.css --style expanded --no-source-map --load-path=assets/sass
 
     - name: Commit and Push Updated CSS
@@ -45,17 +39,12 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         
-        # Pastikan berkas CSS benar-benar ada sebelum dimasukkan ke dalam staging
         if [ -f "assets/css/main.css" ]; then
           git add assets/css/main.css
-          
           if ! git diff --cached --quiet; then
             git commit -m "style: auto-compiled SASS changes to main.css [skip ci]"
             git push origin HEAD:${{ github.ref_name }}
           else
-            echo "Tidak ada perbedaan pada main.css yang dihasilkan."
+            echo "Tidak ada perubahan pada main.css."
           fi
-        else
-          echo "Error: Berkas assets/css/main.css gagal dibuat oleh compiler!"
-          exit 1
         fi
