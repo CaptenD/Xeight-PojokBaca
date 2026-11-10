@@ -1,8 +1,8 @@
 // Ubah bagian ini agar menggunakan string murni (jalur relatif langsung)
-@import 'libs/_vars';
-@import 'libs/_functions';
-@import 'libs/_mixins';
-@import 'libs/_vendor';
+@import "libs/vars";
+@import "libs/functions";
+@import "libs/mixins";
+@import "libs/vendor";
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Raleway:200,700|Source+Sans+Pro:300,600,300italic,600italic");
 // ==========================================================================
@@ -180,15 +180,15 @@ input[type="text"], input[type="url"], select {
 }
 
 // Import komponen bawaan asli HTML5 UP tetap di bawah agar tidak merusak struktur global
-@import 'components/box';
-@import 'components/button';
-@import 'components/form';
-@import 'components/icon';
-@import 'components/image';
-@import 'components/list';
-@import 'components/actions';
-@import 'components/table';
-@import 'components/features';
-@import 'components/menu';
-@import 'components/wrapper';
-@import 'components/footer';
+@import "components/box";
+@import "components/button";
+@import "components/form";
+@import "components/icon";
+@import "components/image";
+@import "components/list";
+@import "components/actions";
+@import "components/table";
+@import "components/features";
+@import "components/menu";
+@import "components/wrapper";
+@import "components/footer";
