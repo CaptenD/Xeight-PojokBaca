@@ -2,55 +2,192 @@
 @import 'libs/functions';
 @import 'libs/mixins';
 @import 'libs/vendor';
-@import 'libs/breakpoints';
-@import 'libs/html-grid';
-@import 'fontawesome-all.min.css';
-@import url('https://fonts.googleapis.com/css?family=Raleway:200,700|Source+Sans+Pro:300,600,300italic,600italic');
+@import url('fontawesome-all.min.css'); // Diubah dari @import murni untuk mencegah error compiler
 
-/*
-	Solid State by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+// ==========================================================================
+// 1. MODERN VARIABLES & THEME OVERRIDE (Claude AI Inspired)
+// ==========================================================================
+$bg-main: #0b0f19;         // Dark rich slate blue/black
+$bg-card: rgba(255, 255, 255, 0.03);
+$border-glass: rgba(255, 255, 255, 0.08);
+$accent-neon: #4f46e5;     // Indigo modern
+$accent-cyan: #06b6d4;     // Cyan untuk aksen interaktif
+$text-muted: #9ca3af;
 
-// Breakpoints.
+:root {
+  --bg-main: #{$bg-main};
+  --accent-neon: #{$accent-neon};
+  --accent-cyan: #{$accent-cyan};
+}
 
-	@include breakpoints((
-		xlarge:    (1281px,   1680px   ),
-		large:     (981px,    1280px   ),
-		medium:    (737px,    980px    ),
-		small:     (481px,    736px    ),
-		xsmall:    (361px,    480px    ),
-		xxsmall:   (null,     360px    )
-	));
+// ==========================================================================
+// 2. BASE RESET & OVERRIDES FOR SOLID STATE
+// ==========================================================================
+body, #page-wrapper {
+  background-color: $bg-main !important;
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+}
 
-// Base.
+// Banner / Hero Section Mod
+#banner {
+  background-image: linear-gradient(135deg, rgba($bg-main, 0.8), rgba(#1e1b4b, 0.6)), url('../../images/banner.jpg');
+  background-attachment: fixed;
+  padding: 8em 0 6em 0;
+  
+  .inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
 
-	@import 'base/reset';
-	@import 'base/page';
-	@import 'base/typography';
+// ==========================================================================
+// 3. NEW CORE FEATURES: GLASSMORPHISM & UTILITIES
+// ==========================================================================
+.glass-panel {
+  background: $bg-card;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid $border-glass;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
 
-// Component.
+// Input Modernization
+input[type="text"], input[type="url"], select {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid $border-glass !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    border-color: $accent-cyan !important;
+    box-shadow: 0 0 0 2px rgba($accent-cyan, 0.2) !important;
+  }
+}
 
-	@import 'components/row';
-	@import 'components/section';
-	@import 'components/form';
-	@import 'components/box';
-	@import 'components/icon';
-	@import 'components/image';
-	@import 'components/list';
-	@import 'components/actions';
-	@import 'components/icons';
-	@import 'components/contact';
-	@import 'components/pagination';
-	@import 'components/table';
-	@import 'components/button';
-	@import 'components/features';
+// ==========================================================================
+// 4. BOOK COLLECTION GRID (CSS GRID LOGIC)
+// ==========================================================================
+.koleksi-wrapper {
+  margin-top: 3rem;
+  
+  .filter-bar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    align-items: center;
+    
+    .search-input {
+      flex: 1;
+      min-width: 250px;
+    }
+  }
+}
 
-// Layout.
+.koleksi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.75rem;
+  padding: 0;
+  list-style: none;
+}
 
-	@import 'layout/header';
-	@import 'layout/menu';
-	@import 'layout/banner';
-	@import 'layout/wrapper';
-	@import 'layout/footer';
+.book-card {
+  @extend .glass-panel;
+  padding: 1.25rem;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba($accent-cyan, 0.4);
+    box-shadow: 0 12px 40px 0 rgba($accent-cyan, 0.1);
+  }
+  
+  .book-cover {
+    width: 100%;
+    height: 280px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.05);
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .cover-placeholder {
+      color: $text-muted;
+      font-size: 3rem;
+    }
+  }
+  
+  .book-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+    h3 {
+      font-size: 1.1rem;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    p {
+      font-size: 0.85rem;
+      color: $text-muted;
+      margin: 0 0 1rem 0;
+    }
+  }
+  
+  // Progress Bar untuk Fitur "Lanjutkan Membaca"
+  .read-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: auto;
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, $accent-neon, $accent-cyan);
+      width: 0%; // Akan dikontrol via JS LocalStorage
+      transition: width 0.5s ease;
+    }
+  }
+}
+
+// Import komponen bawaan asli HTML5 UP tetap di bawah agar tidak merusak struktur global
+@import 'components/box';
+@import 'components/button';
+@import 'components/form';
+@import 'components/icon';
+@import 'components/image';
+@import 'components/list';
+@import 'components/actions';
+@import 'components/table';
+@import 'components/features';
+@import 'components/menu';
+@import 'components/wrapper';
+@import 'components/footer';
