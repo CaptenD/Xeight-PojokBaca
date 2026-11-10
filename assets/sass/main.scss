@@ -2,7 +2,7 @@
 @import 'libs/functions';
 @import 'libs/mixins';
 @import 'libs/vendor';
-@import url('fontawesome-all.min.css'); // Diubah dari @import murni untuk mencegah error compiler
+@import libs('fontawesome-all.min'); // Diubah dari @import murni untuk mencegah error compiler
 
 // ==========================================================================
 // 1. MODERN VARIABLES & THEME OVERRIDE (Claude AI Inspired)
