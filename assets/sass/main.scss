@@ -1,7 +1,9 @@
+// Ubah bagian ini agar menggunakan string murni (jalur relatif langsung)
 @import 'libs/vars';
 @import 'libs/functions';
 @import 'libs/mixins';
 @import 'libs/vendor';
+@import 'libs/fontawesome-all.min'; 
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Raleway:200,700|Source+Sans+Pro:300,600,300italic,600italic");
 // ==========================================================================
